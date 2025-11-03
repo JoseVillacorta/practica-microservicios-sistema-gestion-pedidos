@@ -2,18 +2,21 @@ server:
   port: 8888
 
 spring:
+  security:
+    enabled: false
+
   cloud:
     config:
       server:
         # Repositorio Git local para desarrollo
         git:
-          uri: file:///${PROPERTIES_DIRECTORY}
+          uri: file://D:/Sistema de Gestión de Pedidos con Microservicios/config-repo
           default-label: main
           clone-on-start: true
           timeout: 5
           search-paths:
             - '{application}'
-            - '{application}/{profile}'
+            - '{application}-{profile}'
 
           # Forzar actualización en cada petición (útil en desarrollo)
           force-pull: true
@@ -22,11 +25,6 @@ spring:
       # Permitir sobrescribir configuraciones
       override-none: true
 
-  # Sin seguridad en local para facilitar desarrollo
-  security:
-    user:
-      name: admin
-      password: local123
 
 # Logging detallado para debugging
 logging:

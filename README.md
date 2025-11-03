@@ -17,6 +17,14 @@ Sistema de gestión de pedidos implementado con arquitectura de microservicios u
 - **Perfiles**: dev, qa, prd
 - **Estado**: Completado y funcional
 
+#### ✅ **ms-productos**
+- **Tecnología**: Spring Boot + Gradle + WebFlux + R2DBC
+- **Puerto**: 8081
+- **Función**: API REST completa de productos
+- **Base de datos**: PostgreSQL con procedimientos almacenados
+- **Estado**: Completado con API REST funcional
+- **Endpoints**: CRUD completo + bajo stock + actualizar stock
+
 ## 🛠️ Requisitos Previos
 
 - **Java**: JDK 21 o superior
@@ -52,25 +60,49 @@ cd ms-config-server
 
 **Verificar**: http://localhost:8888
 
-### 2. Verificar configuración
+### 2. Iniciar ms-productos
+```bash
+cd ms-productos
+./gradlew.bat bootRun --args="--spring.profiles.active=dev"
+```
+
+### 3. Verificar configuración
 Abrir en navegador:
+- Config server: http://localhost:8888
 - Productos dev: http://localhost:8888/ms-productos/dev
-- Pedidos dev: http://localhost:8888/ms-pedidos/dev
+- Health check: http://localhost:8081/actuator/health
 
 ## 🔧 Configuración de Perfiles
 
 ### Desarrollo (dev/local)
 - **Config Server**: Puerto 8888
+- **ms-productos**: Puerto 8081, BD: db_productos_dev
 - **Logging**: INFO level
 - **Seguridad**: Usuario admin/local123
 
 ### QA
 - **Config Server**: Puerto 8888
+- **ms-productos**: Puerto 8081, BD: db_productos_qa
 - **Logging**: INFO level
 - **Seguridad**: Usuario admin/qa456
 
 ### Producción (prd)
 - **Config Server**: Puerto 8888
+- **ms-productos**: Puerto 8081, BD: db_productos_prd
 - **Logging**: WARN level
 - **Seguridad**: Variables de entorno obligatorias
+
+## 📋 APIs Disponibles
+
+### ms-productos (Puerto 8081)
+```
+GET    /api/productos              - Listar productos
+GET    /api/productos/{id}         - Obtener producto
+POST   /api/productos              - Crear producto
+PUT    /api/productos/{id}         - Actualizar producto
+DELETE /api/productos/{id}         - Eliminar producto
+PUT    /api/productos/{id}/stock   - Actualizar stock
+GET    /api/productos/bajo-stock   - Productos con bajo stock
+GET    /actuator/health            - Health check
+```
 
