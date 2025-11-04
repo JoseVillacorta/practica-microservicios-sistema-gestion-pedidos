@@ -25,6 +25,13 @@ Sistema de gestión de pedidos implementado con arquitectura de microservicios u
 - **Estado**: Completado con API REST funcional
 - **Endpoints**: CRUD completo + bajo stock + actualizar stock
 
+#### ✅ **ms-pedidos**
+- **Tecnología**: Spring Boot + Maven + WebFlux + R2DBC
+- **Puerto**: 8082
+- **Función**: API REST completa de pedidos con comunicación a ms-productos
+- **Base de datos**: PostgreSQL con validación de stock
+- **Estado**: Completado con integración entre microservicios
+
 ## 🛠️ Requisitos Previos
 
 - **Java**: JDK 21 o superior
